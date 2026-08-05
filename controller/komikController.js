@@ -35,7 +35,7 @@ async function create(req, res) {
   try {
     const {
       judul,
-      deskripsi,
+      sinopsis, // Diubah dari deskripsi menjadi sinopsis
       tahun_terbit,
       penulis_id,
       genre_ids
@@ -50,7 +50,7 @@ async function create(req, res) {
 
     const komik = await Komik.create({
       judul,
-      deskripsi,
+      sinopsis, // Menggunakan sinopsis agar sesuai kolom database
       tahun_terbit,
       penulis_id
     });
@@ -97,7 +97,7 @@ async function update(req, res) {
     const { id } = req.params;
     const {
       judul,
-      deskripsi,
+      sinopsis, // Diubah dari deskripsi menjadi sinopsis
       tahun_terbit,
       penulis_id,
       genre_ids
@@ -113,7 +113,7 @@ async function update(req, res) {
 
     await komik.update({
       judul,
-      deskripsi,
+      sinopsis, // Menggunakan sinopsis
       tahun_terbit,
       penulis_id
     });

@@ -1,18 +1,16 @@
-// GANTI 'mysql' MENJADI 'db'
-const db = require('../models'); 
+const db = require('../models');
 
-async function connectToDatabase() {
+async function connectDatabase() {
   try {
-    // Sekarang `db` sudah bisa dibaca karena sudah di-import di atas
-    await db.sequelize.authenticate(); // Tips: Biasanya di Sequelize strukturnya db.sequelize.authenticate()
-    console.log('Connection has been established successfully.');
-
-    await db.sequelize.sync({ alter: true }); // Catatan: 'force: true' akan MENGHAPUS & membuat ulang semua tabel setiap restart. Kalau tidak mau data hilang, ganti ke 'alter: true' atau hapus opsinya.
-    console.log('Database synchronized.');
-
-  } catch (error) {   
-    console.error('Database connection failed:', error.message);
+    await db.sequelize.authenticate();
+    console.log('Database connected successfully');
+    
+    await db.sequelize.sync({ alter: true });
+    console.log('Database synchronized');
+  } catch (err) {
+    console.error('Database connection failed:', err.message);
+    process.exit(1);
   }
 }
 
-module.exports = connectToDatabase;
+module.exports = connectDatabase;
