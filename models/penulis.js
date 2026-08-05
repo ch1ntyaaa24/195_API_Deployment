@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Penulis.associate = (models) => {
         Penulis.hasMany(models.Komik, {
-            foreignKey: "penulis_Id",
+            foreignKey: "penulis_id   ",
             as: "komik"
         });
     };
