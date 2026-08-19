@@ -12,30 +12,37 @@ const db = {};
 
 let sequelize;
 
+// Opsi SSL & Dialect Module untuk Environment Production / Serverless
+const extraOptions = {
+  dialect: 'postgres',
+  dialectModule: pg,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
+};
+
 if (config.use_env_variable) {
   const connectionUrl = process.env[config.use_env_variable];
-
   const url = new URL(connectionUrl);
 
   url.searchParams.delete("sslmode");
 
   sequelize = new Sequelize(url.toString(), {
     ...config,
-    dialect: "postgres",
-    dialectModule: pg,
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      }
-    }
+    ...extraOptions
   });
 } else {
   sequelize = new Sequelize(
     config.database,
     config.username,
     config.password,
-    config
+    {
+      ...config,
+      ...extraOptions
+    }
   );
 }
 
