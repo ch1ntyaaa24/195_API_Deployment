@@ -42,5 +42,6 @@ module.exports = (sequelize, DataTypes) => {
             as: "genre"
         });
     };
+
     return Komik;
 };

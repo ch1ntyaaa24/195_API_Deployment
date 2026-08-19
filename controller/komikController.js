@@ -15,7 +15,7 @@ async function getAll(req, res) {
         },
         {
           model: Genre,
-          as: "genres",
+          as: "genre",
           through: {
             attributes: []
           }
@@ -62,7 +62,7 @@ async function create(req, res) {
         }
       });
 
-      await komik.setGenres(genres);
+      await komik.setGenre(genres);
     }
 
     const result = await Komik.findByPk(komik.id, {
@@ -73,7 +73,7 @@ async function create(req, res) {
         },
         {
           model: Genre,
-          as: "genres",
+          as: "genre",
           through: {
             attributes: []
           }
@@ -125,7 +125,7 @@ async function update(req, res) {
         }
       });
 
-      await komik.setGenres(genres);
+      await komik.setGenre(genres);
     }
 
     const result = await Komik.findByPk(id, {
@@ -136,7 +136,7 @@ async function update(req, res) {
         },
         {
           model: Genre,
-          as: "genres",
+          as: "genre",
           through: {
             attributes: []
           }
